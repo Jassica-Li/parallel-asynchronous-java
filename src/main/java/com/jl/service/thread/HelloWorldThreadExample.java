@@ -1,4 +1,4 @@
-package com.jl.thread;
+package com.jl.service.thread;
 
 import static com.jl.util.CommonUtil.delay;
 

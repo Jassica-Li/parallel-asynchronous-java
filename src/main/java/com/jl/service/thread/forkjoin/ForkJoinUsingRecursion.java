@@ -1,4 +1,4 @@
-package com.jl.forkjoin;
+package com.jl.service.thread.forkjoin;
 
 import lombok.val;
 

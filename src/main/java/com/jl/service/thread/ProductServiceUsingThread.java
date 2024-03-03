@@ -1,9 +1,11 @@
-package com.jl.service;
+package com.jl.service.thread;
 
 
 import com.jl.domain.Product;
 import com.jl.domain.ProductInfo;
 import com.jl.domain.Review;
+import com.jl.service.ProductInfoService;
+import com.jl.service.ReviewService;
 import lombok.Getter;
 
 import static com.jl.util.CommonUtil.stopWatch;
