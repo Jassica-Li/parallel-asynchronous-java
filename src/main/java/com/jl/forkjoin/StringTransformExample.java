@@ -7,6 +7,7 @@ import java.util.List;
 
 import static com.jl.util.CommonUtil.delay;
 import static com.jl.util.CommonUtil.stopWatch;
+import static com.jl.util.ComputeUtil.addNameLengthTransform;
 import static com.jl.util.LoggerUtil.log;
 
 public class StringTransformExample {
@@ -28,8 +29,4 @@ public class StringTransformExample {
     }
 
 
-    private static String addNameLengthTransform(String name) {
-        delay(500);
-        return name.length()+" - "+name ;
-    }
 }
