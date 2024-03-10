@@ -36,6 +36,11 @@ public class CommonUtil {
         stopWatch.reset();
     }
 
+    public static void resetAndStart(){
+        stopWatch.reset();
+        stopWatch.start();
+    }
+
     public static  int noOfCores(){
         return Runtime.getRuntime().availableProcessors();
     }
