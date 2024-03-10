@@ -40,6 +40,37 @@ As I have 11 cores, so it will take the same time for 6 parallel tasks and 11 ta
 ## Invoking parallelStream() **does not guarantee** faster performance of your code
 ![img.png](summary_of_parallelStream.png)
 
+## performance of collect() and reduce()
+if you have boxing and unboxing in your parallelStream(), you will have a poor performance;
+
+
+# Common ForkJoin Pool
+
+1. Common ForkJoin Pool is an Execution Engine for Parallel Streams
+2. Common ForkJoin Pool is used by:
+   • ParallelStreams
+   • CompletableFuture
+   • Completable Future have options to use a User-defined ThreadPools
+   • Common ForkJoin Pool is shared by the whole process
+3. the nums of parallelism is equal to your nums of cores by default.![img.png](actual_parallelism_is_smaller_the_core.png)
+4. Modifying the nums of parallelism: `System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "100");`![img.png](concurrent vs parallelism.png)
+
+
+## When to use ParallelStream()  and When not?
+ 1. Parallel Streams do a lot compared to sequential(default) Streams 
+    1. Split 
+    2. Execute 
+    3. Combine
+ 2. When it comes to Computation takes a longer time to complete  / Lots of data / More cores in your machine, it's better to use ParallelStream()
+ 3. But sometimes, data types like LinkedList performance poorly as regarding Split, so not using ParallelStream()
+ 4. Others like
+    1. Data set is small
+    2. Auto Boxing and Unboxing don't perform better
+    3. Stream API operators -> iterate(), limit()
+ 
+
+
+
 # Q & A
 1. Callable and Runnable?
 2. Data Parallelism and Task Based Parallelism
