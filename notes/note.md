@@ -13,7 +13,23 @@
 ##  Fork/Join Framework
 1. an extension of ExecutorService
 2. Is designed to achieve **Data Parallelism** while ExecutorService is designed to achieve **Task Based Parallelism**.
-3. 
+
+
+# Streams API
+
+## Mix use of sequential() and parallel()
+ ``List<String> mappedNameList = names
+ .parallelStream()
+ .map(ComputeUtil::addNameLengthTransform)
+ .sequential()
+ .toList();``  will take around 2 seconds
+
+``List<String> mappedNameList = names
+.stream()
+.map(ComputeUtil::addNameLengthTransform)
+.parallel()
+.toList();`` will take reduce the time by 1/4
+
 
 # Q & A
 1. Callable and Runnable?
