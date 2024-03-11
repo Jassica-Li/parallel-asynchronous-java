@@ -69,7 +69,13 @@ if you have boxing and unboxing in your parallelStream(), you will have a poor p
     3. Stream API operators -> iterate(), limit()
  
 
+# CompletableFuture
 
+* Introduced in Java 8 
+* CompletableFuture is **an Asynchronous Reactive Functional Programming API**
+* Asynchronous Computations in a functional Style 
+* CompletableFutures API is created to solve the limitations of Future API ![img.png](completableFuture and Reactive Programming.png)
+* supplyAsync() / thenApply() / thenAccept()
 
 # Q & A
 1. Callable and Runnable?
