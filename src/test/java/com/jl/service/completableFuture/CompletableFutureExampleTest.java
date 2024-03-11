@@ -39,6 +39,18 @@ public class CompletableFutureExampleTest {
         }).join();
     }
 
+    @Test
+    public void test_use_combine(){
+        String result = example.helloWorldUseCombine();
+        assertEquals(result, "HELLO WORLD!");
+    }
+
+    @Test
+    public void test_use_3_combine(){
+        String result = example.helloWorldCombine3Threads();
+        assertEquals(result, "HELLO WORLD!HI COMPLETABLEFUTURE");
+    }
+
 
 
 }
