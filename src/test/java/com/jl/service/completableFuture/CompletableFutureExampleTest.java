@@ -51,6 +51,12 @@ public class CompletableFutureExampleTest {
         assertEquals(result, "HELLO WORLD!HI COMPLETABLEFUTURE");
     }
 
+    @Test
+    public void test_then_compose(){
+        String result = example.helloWorldThenCompose();
+        assertEquals(result, "HELLO WORLD!");
+    }
+
 
 
 }

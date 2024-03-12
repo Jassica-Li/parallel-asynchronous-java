@@ -63,4 +63,14 @@ public class CompletableFutureExample {
         timeTaken();
         return result;
     }
+
+    public String helloWorldThenCompose(){
+        startTimer();
+        CompletableFuture<String> hello = CompletableFuture.supplyAsync(helloWorldService::hello);
+        String result = hello
+                .thenCompose(helloWorldService::worldFuture)
+                .thenApply(String::toUpperCase).join();
+        timeTaken();
+        return result;
+    }
 }
