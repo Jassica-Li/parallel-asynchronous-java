@@ -44,7 +44,6 @@ public class CompletableFutureExampleTest {
         String result = example.helloWorldUseCombine();
         assertEquals(result, "HELLO WORLD!");
     }
-
     @Test
     public void test_use_3_combine(){
         String result = example.helloWorldCombine3Threads();

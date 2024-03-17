@@ -1,8 +1,12 @@
 package com.jl.service.completableFuture;
 
 import com.jl.service.HelloWorldService;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static com.jl.util.CommonUtil.*;
 import static com.jl.util.LoggerUtil.log;
@@ -39,17 +43,51 @@ public class CompletableFutureExample {
 
     public String helloWorldUseCombine(){
         // only take the max time of one of its threads
-        startTimer();
+        resetAndStart();
         CompletableFuture<String> hello = CompletableFuture.supplyAsync(helloWorldService::hello);
         CompletableFuture<String> world = CompletableFuture.supplyAsync(helloWorldService::world);
-        String result = hello.thenCombine(world, (h, w) -> h + w).thenApply(String::toUpperCase).join();
+        String result = hello
+                .thenCombine(world, (h, w) ->
+                {
+                    log("combine hello and world");
+                    return h + w;
+                })
+                .thenApply((it) -> {
+                    log("to upper case");
+                    return it.toUpperCase();
+                })
+                .join();
         timeTaken();
         return result;
     }
 
+    public String helloWorldUsingCustomThreadPool(){
+        ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+        CompletableFuture<String> hello = CompletableFuture.supplyAsync(helloWorldService::hello, executorService);
+        CompletableFuture<String> world = CompletableFuture.supplyAsync(helloWorldService::world, executorService);
+        return hello.thenCombineAsync(world, (h, w) -> h + w, executorService).thenApplyAsync(String::toUpperCase, executorService).join();
+    }
+
+    public String helloWorldUsingAsync(){
+        CompletableFuture<String> hello = CompletableFuture.supplyAsync(helloWorldService::hello);
+        CompletableFuture<String> world = CompletableFuture.supplyAsync(helloWorldService::world);
+        return hello
+                .thenCombineAsync(world, (h, w) ->
+                {
+                    log("combine hello and world");
+                    return h + w;
+                })
+                .thenApplyAsync((it) -> {
+                    log("to upper case");
+                    return it.toUpperCase();
+                })
+                .join();
+    }
+
+
     public String helloWorldCombine3Threads(){
         // use the max time of all its threads, in which is nearly 2 seconds
-        startTimer();
+        resetAndStart();
         CompletableFuture<String> hello = CompletableFuture.supplyAsync(helloWorldService::hello);
         CompletableFuture<String> world = CompletableFuture.supplyAsync(helloWorldService::world);
         CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> {

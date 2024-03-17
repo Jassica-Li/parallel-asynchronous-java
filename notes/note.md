@@ -83,6 +83,14 @@ if you have boxing and unboxing in your parallelStream(), you will have a poor p
   * handle() method will be invoked whether there is exception or not
   * exceptionally() will be invoked if there is an exception
   * whenComplete()
+* CompletableFuture use ForkJoinPool by default, so the number of threads is equal to the number of cores
+* Creating an user-defined threadPool
+* Async and non async 
+  *  Using async() functions allows you to change the thread of execution 
+  * Use this when you have blocking operations in your Completablefuture pipeline
+  * ![img_1.png](use_non_async.png)
+  * ![img.png](use_async.png)
+* 
 
 # Q & A
 1. Callable and Runnable?
