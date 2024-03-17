@@ -77,6 +77,8 @@ public class ProductServiceUsingCompletableFuture {
                 .stream()
                 .map(productOption -> CompletableFuture
                         .supplyAsync(() -> inventoryService.addInventory(productOption))
+                        .exceptionally(exception -> Inventory.builder()
+                                .count(1).build())
                         .thenApply((inventory) -> {
                                     productOption.setInventory(inventory);
                                     return productOption;

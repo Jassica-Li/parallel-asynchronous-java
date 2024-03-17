@@ -1,7 +1,7 @@
 
 # Concurrency VS Parallelism
 
-# Using thread 
+# Thread 
 
 ## Runnable and Thread in Java
 1. In `ProductServiceUsingThread`, we reduce the executing time by almost half. The limitations of thread api![img.png](limitations_of_thread.png)
@@ -14,6 +14,8 @@
 1. an extension of ExecutorService
 2. Is designed to achieve **Data Parallelism** while ExecutorService is designed to achieve **Task Based Parallelism**.
 
+
+## data race and race condition
 
 # Streams API
 
@@ -77,6 +79,10 @@ if you have boxing and unboxing in your parallelStream(), you will have a poor p
 * CompletableFutures API is created to solve the limitations of Future API ![img.png](completableFuture and Reactive Programming.png)
 * supplyAsync() / thenApply() / thenAccept()
 * thenCombine() / thenCompose()
+* Error handling
+  * handle() method will be invoked whether there is exception or not
+  * exceptionally() will be invoked if there is an exception
+  * whenComplete()
 
 # Q & A
 1. Callable and Runnable?
