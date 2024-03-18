@@ -90,7 +90,7 @@ if you have boxing and unboxing in your parallelStream(), you will have a poor p
   * Use this when you have blocking operations in your Completablefuture pipeline
   * ![img_1.png](use_non_async.png)
   * ![img.png](use_async.png)
-* 
+* allOf() and anyOf()
 
 # Q & A
 1. Callable and Runnable?
